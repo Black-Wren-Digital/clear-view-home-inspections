@@ -1,6 +1,9 @@
 @import "tailwindcss";
 @import "@fontsource-variable/inter";
 
+/* The plan and spec in docs/ quote many class names; keep them out of the build. */
+@source not "../docs";
+
 @theme {
   --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji";

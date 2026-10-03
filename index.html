@@ -1,12 +1,222 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="scroll-pt-20 motion-safe:scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Clear View Home Inspections | Fishers &amp; Indianapolis Home Inspector</title>
+    <meta
+      name="description"
+      content="Clear View Home Inspections serves Central Indiana with residential and commercial home inspections, new construction and pre-drywall inspections, radon testing, and mold testing."
+    />
+    <meta name="theme-color" content="#243292" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.cvhi.us/" />
+    <meta property="og:title" content="Clear View Home Inspections | Fishers &amp; Indianapolis Home Inspector" />
+    <meta
+      property="og:description"
+      content="Clear View Home Inspections serves Central Indiana with residential and commercial home inspections, new construction and pre-drywall inspections, radon testing, and mold testing."
+    />
+    <meta property="og:image" content="https://www.cvhi.us/og-image.jpg" />
+    <meta property="og:image:width" content="948" />
+    <meta property="og:image:height" content="496" />
+    <meta name="twitter:card" content="summary_large_image" />
+
     <script type="module" src="/src/main.js"></script>
   </head>
-  <body class="font-sans text-slate-900">
-    <h1 class="p-8 text-4xl font-bold text-brand-700">Clear View Home Inspections</h1>
+  <body class="bg-white font-sans text-slate-900 antialiased">
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:rounded-lg focus:bg-white focus:px-4 focus:py-3 focus:font-semibold focus:text-brand-700 focus:shadow-lg"
+      >Skip to content</a
+    >
+
+    <header class="sticky top-0 z-40 border-b border-slate-200 bg-white/95 backdrop-blur">
+      <div class="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4 sm:px-6">
+        <a href="#top" class="flex items-center gap-3 rounded-lg">
+          <img src="./src/assets/images/logo.webp" alt="" width="120" height="80" class="h-10 w-auto rounded" />
+          <span class="text-base leading-tight font-bold text-brand-700 sm:text-lg"
+            >Clear View<span class="hidden sm:inline"> Home Inspections</span></span
+          >
+        </a>
+
+        <nav aria-label="Main" class="hidden items-center gap-6 md:flex">
+          <a href="#services" class="text-sm font-medium text-slate-600 hover:text-brand-700">Services</a>
+          <a href="#reports" class="text-sm font-medium text-slate-600 hover:text-brand-700">Reports</a>
+          <a href="#reviews" class="text-sm font-medium text-slate-600 hover:text-brand-700">Reviews</a>
+          <a href="#faq" class="text-sm font-medium text-slate-600 hover:text-brand-700">FAQ</a>
+          <a href="#contact" class="text-sm font-medium text-slate-600 hover:text-brand-700">Contact</a>
+          <a
+            href="tel:3175780890"
+            class="inline-flex items-center gap-2 rounded-lg bg-brand-700 px-4 py-2.5 text-sm font-semibold text-white hover:bg-brand-800"
+          >
+            <svg class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384" /></svg>
+            Call (317) 578-0890
+          </a>
+        </nav>
+
+        <div class="flex items-center gap-1 md:hidden">
+          <a
+            href="tel:3175780890"
+            class="inline-flex size-11 items-center justify-center rounded-lg text-brand-700 hover:bg-brand-50"
+            aria-label="Call (317) 578-0890"
+          >
+            <svg class="size-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384" /></svg>
+          </a>
+          <button
+            type="button"
+            class="group inline-flex size-11 items-center justify-center rounded-lg text-slate-700 hover:bg-slate-100"
+            aria-controls="mobile-menu"
+            aria-expanded="false"
+            data-menu-button
+          >
+            <span class="sr-only">Menu</span>
+            <svg class="size-6 group-aria-expanded:hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16" /><path d="M4 12h16" /><path d="M4 19h16" /></svg>
+            <svg class="hidden size-6 group-aria-expanded:block" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18" /><path d="m6 6 12 12" /></svg>
+          </button>
+        </div>
+      </div>
+
+      <nav id="mobile-menu" aria-label="Mobile" class="border-t border-slate-200 bg-white md:hidden" hidden>
+        <ul class="mx-auto max-w-6xl space-y-1 px-4 py-3">
+          <li><a href="#services" class="block rounded-lg px-3 py-3 font-medium text-slate-700 hover:bg-slate-100">Services</a></li>
+          <li><a href="#reports" class="block rounded-lg px-3 py-3 font-medium text-slate-700 hover:bg-slate-100">Reports</a></li>
+          <li><a href="#reviews" class="block rounded-lg px-3 py-3 font-medium text-slate-700 hover:bg-slate-100">Reviews</a></li>
+          <li><a href="#faq" class="block rounded-lg px-3 py-3 font-medium text-slate-700 hover:bg-slate-100">FAQ</a></li>
+          <li><a href="#contact" class="block rounded-lg px-3 py-3 font-medium text-slate-700 hover:bg-slate-100">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section id="top" class="relative isolate overflow-hidden bg-brand-900">
+        <img
+          src="./src/assets/images/hero-house-1024.webp"
+          srcset="./src/assets/images/hero-house-640.webp 640w, ./src/assets/images/hero-house-1024.webp 1024w"
+          sizes="100vw"
+          alt="A two-story home with stone and cedar shingle siding"
+          width="1024"
+          height="496"
+          fetchpriority="high"
+          class="absolute inset-0 -z-10 h-full w-full object-cover"
+        />
+        <div
+          class="absolute inset-0 -z-10 bg-brand-950/85 md:bg-transparent md:bg-linear-to-r md:from-brand-950/95 md:via-brand-800/80 md:to-brand-700/20"
+          aria-hidden="true"
+        ></div>
+        <div class="mx-auto max-w-6xl px-4 py-24 sm:px-6 md:py-32 lg:py-40">
+          <div class="max-w-xl text-white">
+            <p class="text-sm font-semibold tracking-wider text-brand-200 uppercase">
+              Indiana's clear choice for home inspections
+            </p>
+            <h1 class="mt-4 text-4xl font-bold tracking-tight text-balance sm:text-5xl lg:text-6xl">
+              Protect your investment. Choose Clear View.
+            </h1>
+            <p class="mt-6 text-lg text-brand-100">
+              Residential and commercial home inspections for Indianapolis and the surrounding counties.
+            </p>
+            <div class="mt-10 flex flex-col gap-3 sm:flex-row">
+              <a
+                href="#contact"
+                class="inline-flex items-center justify-center rounded-lg bg-white px-6 py-3 font-semibold text-brand-700 shadow-sm hover:bg-brand-50"
+                >Schedule an inspection</a
+              >
+              <a
+                href="#services"
+                class="inline-flex items-center justify-center rounded-lg border border-white/70 px-6 py-3 font-semibold text-white hover:bg-white/10"
+                >Our services</a
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section aria-label="Why clients choose us" class="border-b border-slate-200 bg-white">
+        <ul class="mx-auto grid max-w-6xl grid-cols-2 gap-6 px-4 py-8 sm:px-6 lg:grid-cols-4">
+          <li class="flex items-center gap-3">
+            <span class="flex size-10 shrink-0 items-center justify-center rounded-lg bg-brand-50 text-brand-700">
+              <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2v3" /><path d="M16 2v3" /><rect x="3" y="3" width="18" height="18" rx="2" /><path d="M3 9h18" /><path d="m9 15 2 2 4-4" /></svg>
+            </span>
+            <span class="text-sm font-semibold text-slate-800">Serving Central Indiana since 1999</span>
+          </li>
+          <li class="flex items-center gap-3">
+            <span class="flex size-10 shrink-0 items-center justify-center rounded-lg bg-brand-50 text-brand-700">
+              <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z" /><path d="m16 9-5.5 5.5L8 12" /></svg>
+            </span>
+            <span class="text-sm font-semibold text-slate-800">Licensed home inspectors</span>
+          </li>
+          <li class="flex items-center gap-3">
+            <span class="flex size-10 shrink-0 items-center justify-center rounded-lg bg-brand-50 text-brand-700">
+              <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10" /><path d="M12 6v6l4 2" /></svg>
+            </span>
+            <span class="text-sm font-semibold text-slate-800">Report within 24 hours</span>
+          </li>
+          <li class="flex items-center gap-3">
+            <span class="flex size-10 shrink-0 items-center justify-center rounded-lg bg-brand-50 text-brand-700">
+              <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" /><circle cx="12" cy="10" r="3" /></svg>
+            </span>
+            <span class="text-sm font-semibold text-slate-800">Based in Fishers, Indiana</span>
+          </li>
+        </ul>
+      </section>
+
+      <section id="about" class="bg-white">
+        <div class="mx-auto grid max-w-6xl items-center gap-12 px-4 py-20 sm:px-6 lg:grid-cols-2 lg:py-28">
+          <div>
+            <h2 class="text-3xl font-bold tracking-tight text-balance sm:text-4xl">
+              If you're buying a house, you need a home inspection.
+            </h2>
+            <div class="mt-6 space-y-4 text-lg leading-relaxed text-slate-600">
+              <p>
+                Your home is your most important investment. Our inspections pay for themselves with equity
+                protection and peace of mind.
+              </p>
+              <p>
+                Clear View delivers a complete, thorough inspection of the plumbing, electrical, heating and air
+                conditioning systems, foundation, roof, exterior and interior structures and surfaces, and built-in
+                appliances.
+              </p>
+              <p>
+                We stay in contact with you and your real estate agent from start to finish, so you get timely,
+                accurate information.
+              </p>
+              <p>
+                We serve residential and commercial clients in Indianapolis and the surrounding counties from our
+                office in Fishers, Indiana.
+              </p>
+            </div>
+          </div>
+          <div class="relative aspect-video overflow-hidden rounded-2xl bg-slate-900 shadow-xl">
+            <button
+              type="button"
+              class="group absolute inset-0 h-full w-full cursor-pointer"
+              data-video-id="H6RSqJ-COWg"
+              data-video-title="Clear View Home Inspections"
+              aria-label="Play video: Clear View Home Inspections"
+            >
+              <img
+                src="./src/assets/images/video-thumb.webp"
+                alt=""
+                width="960"
+                height="540"
+                loading="lazy"
+                class="h-full w-full object-cover opacity-90 transition group-hover:opacity-100"
+              />
+              <span class="absolute inset-0 flex items-center justify-center">
+                <span class="flex size-16 items-center justify-center rounded-full bg-white/95 text-brand-700 shadow-lg transition group-hover:scale-105 motion-reduce:transition-none">
+                  <svg class="ml-1 size-7" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z" /></svg>
+                </span>
+              </span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- @task4:sections -->
+    </main>
+
+    <!-- @task4:footer -->
   </body>
 </html>
