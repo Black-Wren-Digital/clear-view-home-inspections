@@ -8,7 +8,7 @@ export default {
 		// Subresource integrity matters for files from other servers, not for our own bundle.
 		'require-sri': ['error', { target: 'crossorigin' }],
 		// Prettier wraps <title> onto 3 lines, and this rule counts that whitespace.
-		// Title length is part of the later SEO work (see TODO.md).
+		// Title length is part of the SEO work (docs/seo-plan.md, Phase 2).
 		'long-title': 'off',
 		// Phone links keep the number on one line with the whitespace-nowrap class
 		// instead of &nbsp; entities. whitespace-normal marks a tel: link whose text

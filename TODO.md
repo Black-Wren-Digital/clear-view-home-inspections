@@ -29,9 +29,4 @@ Open follow-ups for the site. Check an item off (or delete it) in the same pull 
 
 ## Later: SEO and marketing
 
-- [ ] Structured data (`LocalBusiness` JSON-LD with the address, phone number, hours, and service area).
-- [ ] Review the page title for search results. It has 67 characters, and Google often shows about 60. The owner approves any change. (`html-validate`'s `long-title` rule is off until then.)
-- [ ] A canonical URL, `sitemap.xml`, and `robots.txt`. Submit the sitemap in Google Search Console and Bing Webmaster Tools.
-- [ ] Separate pages for the main services.
-- [ ] Analytics.
-- [ ] React, if the site grows. Vite already supports it.
+- [ ] Follow `docs/seo-plan.md` after launch. It covers the Google Business Profile, structured data, the sitemap, analytics, the move to Astro with service pages, the page title, reviews, listings, and Local Services Ads.
