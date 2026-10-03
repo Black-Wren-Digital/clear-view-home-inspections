@@ -1,33 +1,34 @@
-# cvhi.us — static site
+# Clear View Home Inspections website
 
-Plain HTML/CSS. No build step, no framework. Every folder has an `index.html`, so URLs match the old Wix paths (`/services`, `/home-inspections`, `/reports`, `/testimonials`, `/contact-us`).
+The website for Clear View Home Inspections, LLC (https://www.cvhi.us). It is a one-page static site built with [Vite](https://vite.dev) and [Tailwind CSS v4](https://tailwindcss.com).
 
-## Before launch
-Search every page for `[OWNER:` (highlighted yellow on the page). Those spots need real info: license numbers, prices, hours, counties, reviews, and a sample report.
+## Requirements
 
-    grep -rn "OWNER:" --include=*.html .
+- Node.js 20.19 or later, or 22.12 or later.
 
-## License numbers (fill locally)
-License numbers are left as the tokens `{{HOME_INSPECTOR_LICENSE}}` and `{{RADON_TESTER_LICENSE}}` so they never go through chat. Fill them on your own machine before publishing:
+## Commands
 
-    bash scripts/fill-licenses.sh
+| Command           | What it does                                          |
+| ----------------- | ----------------------------------------------------- |
+| `npm install`     | Installs the dependencies.                            |
+| `npm run dev`     | Starts a local server with live reload.               |
+| `npm test`        | Runs the tests once.                                  |
+| `npm run build`   | Builds the site into `dist/`.                         |
+| `npm run preview` | Serves the built site from `dist/` on port 4173.      |
 
-Keep in mind that once the site is live the numbers are public, which is the point: they're a trust signal, and Indiana's license lookup already lists them. Push only after the tokens are filled. Otherwise the literal `{{...}}` text will show on the site.
+## Deploy
 
-## Preview locally
-    python3 -m http.server 8000   # then open http://localhost:8000
+The site is static. Any static host can serve the `dist/` folder.
 
-## Deploy (later, not yet)
-1. Push this folder to a GitHub repo. Settings → Pages → deploy from `main` / root.
-2. Verify cvhi.us for the GitHub account first (recommended to prevent domain takeover).
-3. `CNAME` already contains `www.cvhi.us`. At the registrar, add apex A records 185.199.108.153, .109.153, .110.153, .111.153 (plus the AAAA records from the GitHub docs) and a `www` CNAME to `<account>.github.io`. Leave the MX records alone so info@cvhi.us keeps working.
-4. Turn on Enforce HTTPS (can take up to 24 hours to become available).
-5. Submit `/sitemap.xml` in Google Search Console and Bing Webmaster Tools.
+- **Netlify:** Build command `npm run build`. Publish directory `dist`.
+- **GitHub Pages:** Use a GitHub Actions workflow that runs `npm ci` and `npm run build`, then uploads `dist/`. See the Vite guide: https://vite.dev/guide/static-deploy#github-pages. The Vite config uses `base: './'`, so the site works on a custom domain and on a `username.github.io/repo/` URL.
 
-Docs: https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site
+## Project layout
 
-## Adding a blog post
-Copy a folder under `/blog/`, then edit the title, meta description, canonical, JSON-LD, and content. Add the URL to `sitemap.xml`, `llms.txt`, and the cards on `/blog/index.html`.
-# clearviewhomeinspections
-# clearviewhomeinspections
-# clearviewhomeinspections
+- `index.html`: the page, with all sections.
+- `src/main.css`: Tailwind, the Inter font, and the brand color tokens (`brand-50` to `brand-950`; `brand-700` is the logo blue, `#243292`).
+- `src/main.js`: the entry point. It starts the modules in `src/js/`.
+- `src/assets/images/`: content images. Run `scripts/optimize-images.sh` to make them again from `assets/source/`.
+- `public/`: files that need a fixed URL (favicon, Open Graph image).
+- `tests/`: Vitest tests.
+- `docs/superpowers/`: the design spec and the implementation plan.
