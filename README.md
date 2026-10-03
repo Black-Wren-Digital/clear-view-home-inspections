@@ -15,13 +15,17 @@ The website for Clear View Home Inspections, LLC (https://www.cvhi.us). It is a 
 
 ## Commands
 
-| Command           | What it does                                     |
-| ----------------- | ------------------------------------------------ |
-| `npm install`     | Installs the dependencies.                       |
-| `npm run dev`     | Starts a local server with live reload.          |
-| `npm test`        | Runs the tests once.                             |
-| `npm run build`   | Builds the site into `dist/`.                    |
-| `npm run preview` | Serves the built site from `dist/` on port 4173. |
+| Command                | What it does                                          |
+| ---------------------- | ----------------------------------------------------- |
+| `npm install`          | Installs the dependencies.                            |
+| `npm run dev`          | Starts a local server with live reload.               |
+| `npm test`             | Runs the tests once.                                  |
+| `npm run build`        | Builds the site into `dist/`.                         |
+| `npm run preview`      | Serves the built site from `dist/` on port 4173.      |
+| `npm run lint`         | Checks the JavaScript with ESLint.                    |
+| `npm run lint:html`    | Validates `index.html` with html-validate.            |
+| `npm run format`       | Formats all files with Prettier.                      |
+| `npm run format:check` | Checks the formatting without changes (CI runs this). |
 
 ## Deploy
 
@@ -87,6 +91,9 @@ A hidden field named `_gotcha` stops simple spam bots. If it has a value, the fo
 - `public/`: files that need a fixed URL (favicon, Open Graph image).
 - `scripts/`: the image script, and the Vite plugin that adds the preview `noindex` tag.
 - `.github/workflows/deploy.yml`: tests, builds, and deploys the site to GitHub Pages.
+- `.github/workflows/ci.yml`: checks every pull request (lint, HTML validation, format, tests, build).
+- `.github/dependabot.yml`: weekly dependency update pull requests.
+- `eslint.config.js`, `prettier.config.js`, `.htmlvalidate.mjs`, `.editorconfig`: lint and format settings.
 - `tests/`: Vitest tests.
 - `AGENTS.md`: context and conventions for coding agents (`CLAUDE.md` loads it for Claude Code).
 - `TODO.md`: open follow-ups, including the launch steps.
