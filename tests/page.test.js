@@ -144,3 +144,152 @@ describe('images', () => {
     }
   });
 });
+
+describe('page links', () => {
+  it('points each in-page link at an element that exists', () => {
+    for (const a of document.querySelectorAll('a[href^="#"]')) {
+      const id = a.getAttribute('href').slice(1);
+      expect(document.getElementById(id), a.getAttribute('href')).not.toBeNull();
+    }
+  });
+
+  it('opens each external link in a new tab, safely', () => {
+    for (const a of document.querySelectorAll('a[href^="http"]')) {
+      expect(a.getAttribute('target'), a.href).toBe('_blank');
+      expect(a.getAttribute('rel'), a.href).toBe('noopener noreferrer');
+    }
+  });
+
+  it('uses one phone number and one email address', () => {
+    for (const a of document.querySelectorAll('a[href^="tel:"]')) {
+      expect(a.getAttribute('href')).toBe('tel:3175780890');
+    }
+    for (const a of document.querySelectorAll('a[href^="mailto:"]')) {
+      expect(a.getAttribute('href')).toMatch(/^mailto:info@cvhi\.us(\?|$)/);
+    }
+  });
+
+  it('gives each section with an id an h2, except the hero', () => {
+    for (const section of document.querySelectorAll('main section[id]:not(#top)')) {
+      expect(section.querySelector('h2'), section.id).not.toBeNull();
+    }
+  });
+});
+
+describe('services', () => {
+  it('lists the eleven services in order', () => {
+    const names = [...document.querySelectorAll('#services [data-service]')].map(text);
+    expect(names).toEqual([
+      'Full Home Inspections',
+      'New Construction Inspections',
+      'Pre-Drywall Inspections',
+      'Foundation Inspections',
+      'Commercial Inspections',
+      'Termite Certification',
+      'Radon Testing',
+      'Mold Testing',
+      'Air & Water Sampling',
+      'Winterization & De-Winterization',
+      'Well & Septic Certifications',
+    ]);
+  });
+
+  it('ends with a call card', () => {
+    const cta = document.querySelector('#services [data-service-cta] a');
+    expect(cta.getAttribute('href')).toBe('tel:3175780890');
+    expect(text(cta)).toBe('Not sure what you need? Call us');
+  });
+});
+
+describe('reports', () => {
+  it('has the heading and the text', () => {
+    const section = document.getElementById('reports');
+    expect(text(section.querySelector('h2'))).toBe('A clear report within 24 hours');
+    expect(text(section)).toContain(
+      'Within 24 hours of your inspection, you receive a detailed, easy-to-read report. It lists each defect, sorts the defects by severity, and includes photos.',
+    );
+  });
+});
+
+describe('reviews', () => {
+  const section = () => document.getElementById('reviews');
+
+  it('quotes the review word for word', () => {
+    expect(text(section().querySelector('blockquote'))).toBe(
+      'My fiance and I are in the process of buying our first home. After finding the perfect home, our realtor recommended [Clear View Home Inspections] for the inspection. Doug Wehr was our inspector and he was absolutely fantastic. He was incredibly thorough and made sure to explain every step of the process and every detail regarding any serious or potential issue in the home. We are so appreciative of his time and expertise during our experience. I would highly recommend Doug to any of my family and friends!',
+    );
+    expect(text(section().querySelector('figcaption'))).toBe('Krystal Schulz · First-time home buyer');
+  });
+
+  it('links to Google and Yelp reviews', () => {
+    const links = [...section().querySelectorAll('a')].map((a) => [text(a), a.getAttribute('href')]);
+    expect(links).toEqual([
+      ['Read our Google reviews', 'https://share.google/r1sEf6h0a8sqJCZn8'],
+      ['Read our Yelp reviews', 'https://www.yelp.com/biz/clear-view-home-inspections-fishers'],
+    ]);
+  });
+});
+
+describe('faq', () => {
+  it('has three questions and opens the first one', () => {
+    const items = [...document.querySelectorAll('#faq details')];
+    expect(items.map((d) => text(d.querySelector('summary')))).toEqual([
+      'What is a home inspection?',
+      'Should I be present for the inspection?',
+      'When can I expect my report?',
+    ]);
+    expect(items.map((d) => d.hasAttribute('open'))).toEqual([true, false, false]);
+  });
+
+  it('puts each answer under the correct question', () => {
+    const answers = [...document.querySelectorAll('#faq details > p')].map(text);
+    expect(answers[0]).toMatch(/^A home inspection is a thorough visual review/);
+    expect(answers[1]).toMatch(/^We recommend it\./);
+    expect(answers[2]).toMatch(/^Within 24 hours of the inspection/);
+  });
+});
+
+describe('contact form', () => {
+  const form = () => document.getElementById('contact-form');
+
+  it('has the attributes that the form module and the hosts need', () => {
+    expect(form().getAttribute('name')).toBe('contact');
+    expect(form().getAttribute('method')).toBe('POST');
+    expect(form().getAttribute('data-endpoint')).toBe('');
+    expect(form().getAttribute('netlify-honeypot')).toBe('_gotcha');
+    expect(form().querySelector('input[type="hidden"][name="form-name"]').value).toBe('contact');
+    expect(form().querySelector('input[name="_gotcha"]').getAttribute('tabindex')).toBe('-1');
+  });
+
+  it('has four required fields, each with a visible label', () => {
+    const labels = {};
+    for (const name of ['first_name', 'last_name', 'email', 'message']) {
+      const field = form().querySelector(`[name="${name}"]`);
+      expect(field.required, name).toBe(true);
+      labels[name] = text(document.querySelector(`label[for="${field.id}"]`));
+    }
+    expect(labels).toEqual({
+      first_name: 'First name',
+      last_name: 'Last name',
+      email: 'Email',
+      message: 'Message',
+    });
+    expect(form().querySelector('[name="email"]').type).toBe('email');
+  });
+
+  it('has a submit button, a status line, and a hidden success message', () => {
+    expect(text(form().querySelector('button[type="submit"]'))).toBe('Send message');
+    expect(form().querySelector('p[role="status"]')).not.toBeNull();
+    const success = form().parentElement.querySelector('[data-form-success]');
+    expect(success.hasAttribute('hidden')).toBe(true);
+    expect(text(success)).toContain("Thanks! We'll be in touch soon.");
+  });
+});
+
+describe('footer', () => {
+  it('has the copyright line with a year placeholder', () => {
+    const footer = document.querySelector('footer');
+    expect(footer.querySelector('[data-year]').textContent).toBe('2026');
+    expect(text(footer)).toContain('© 2026 Clear View Home Inspections, LLC. All rights reserved.');
+  });
+});
