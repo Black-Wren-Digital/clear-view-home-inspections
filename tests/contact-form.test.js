@@ -70,8 +70,7 @@ describe("submitContactForm without an endpoint", () => {
     const openUrl = vi.fn();
     await submitContactForm(form, { fetchImpl, openUrl });
     expect(fetchImpl).not.toHaveBeenCalled();
-    expect(openUrl).toHaveBeenCalledOnce();
-    expect(openUrl).toHaveBeenCalledWith(
+    expect(openUrl).toHaveBeenCalledExactlyOnceWith(
       buildMailto({
         firstName: "Jane",
         lastName: "Doe",
