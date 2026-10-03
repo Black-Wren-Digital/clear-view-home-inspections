@@ -119,6 +119,19 @@ describe('trust bar', () => {
     expect(list.contains('sm:grid-cols-2')).toBe(true);
     expect(list.contains('lg:grid-cols-4')).toBe(true);
   });
+
+  it('uses the same card style as the service cards', () => {
+    const serviceCard = document.querySelector('#services li:has([data-service])');
+    const serviceIcon = serviceCard.querySelector(':scope > span');
+    const serviceName = serviceCard.querySelector('[data-service]');
+    for (const card of document.querySelectorAll('[aria-label="Why clients choose us"] li')) {
+      const [icon, label] = card.querySelectorAll(':scope > span');
+      expect(card.className).toBe(serviceCard.className);
+      expect(icon.className).toBe(serviceIcon.className);
+      expect(icon.querySelector('svg').getAttribute('class')).toBe(serviceIcon.querySelector('svg').getAttribute('class'));
+      expect(label.className).toBe(serviceName.className);
+    }
+  });
 });
 
 describe('why clear view', () => {
