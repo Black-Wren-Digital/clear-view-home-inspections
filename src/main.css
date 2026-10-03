@@ -1,0 +1,39 @@
+@import "tailwindcss";
+@import "@fontsource-variable/inter";
+
+/* The plan and spec in docs/ quote many class names; keep them out of the build. */
+@source not "../docs";
+
+@theme {
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji";
+
+  --color-brand-50: #eef0fb;
+  --color-brand-100: #dde1f7;
+  --color-brand-200: #c3caf1;
+  --color-brand-300: #9ea9e8;
+  --color-brand-400: #7181dc;
+  --color-brand-500: #4d5fcf;
+  --color-brand-600: #3445b5;
+  --color-brand-700: #243292;
+  --color-brand-800: #1f2a78;
+  --color-brand-900: #1b2463;
+  --color-brand-950: #141a45;
+}
+
+/*
+ * Two-tone focus ring: a blue outline with a white halo, visible on white and on blue.
+ * Not in a layer, so shadow-* utilities cannot remove the white halo.
+ */
+:focus-visible {
+  outline: 2px solid var(--color-brand-700);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 5px #fff;
+}
+
+/* For an element that fills an overflow-hidden container: draw the ring inside it. */
+.focus-ring-inset:focus-visible {
+  outline-width: 3px;
+  outline-offset: -7px;
+  box-shadow: none;
+}
