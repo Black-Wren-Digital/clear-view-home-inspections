@@ -91,6 +91,20 @@ describe('hero', () => {
     expect(text(h1s[0])).toBe('Protect your investment. Choose Clear View.');
   });
 
+  it('fills the first screen below the header at all widths', () => {
+    const hero = document.getElementById('top').classList;
+    expect(hero.contains('min-h-[calc(100svh-4rem-1px)]')).toBe(true);
+    expect([...hero].some((c) => /^(sm|md|lg|xl):min-h-/.test(c))).toBe(false);
+  });
+
+  it('holds the trust cards below the buttons', () => {
+    const hero = document.getElementById('top');
+    const trust = hero.querySelector('ul[aria-label="Why clients choose us"]');
+    expect(trust).not.toBeNull();
+    const buttons = hero.querySelector('a[href="#contact"]');
+    expect(buttons.compareDocumentPosition(trust) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+  });
+
   it('has the two buttons', () => {
     const hero = document.getElementById('top');
     const links = [...hero.querySelectorAll('a')].map((a) => [text(a), a.getAttribute('href')]);
@@ -113,23 +127,22 @@ describe('trust bar', () => {
   });
 
   it('stacks the facts in one column on phones', () => {
-    const list = document.querySelector('[aria-label="Why clients choose us"] ul').classList;
+    const list = document.querySelector('ul[aria-label="Why clients choose us"]').classList;
     expect(list.contains('grid-cols-1')).toBe(true);
     expect(list.contains('grid-cols-2')).toBe(false);
     expect(list.contains('sm:grid-cols-2')).toBe(true);
-    expect(list.contains('lg:grid-cols-4')).toBe(true);
+    expect(list.contains('lg:flex')).toBe(true);
+    expect(list.contains('lg:justify-between')).toBe(true);
   });
 
-  it('uses the same card style as the service cards', () => {
-    const serviceCard = document.querySelector('#services li:has([data-service])');
-    const serviceIcon = serviceCard.querySelector(':scope > span');
-    const serviceName = serviceCard.querySelector('[data-service]');
-    for (const card of document.querySelectorAll('[aria-label="Why clients choose us"] li')) {
-      const [icon, label] = card.querySelectorAll(':scope > span');
-      expect(card.className).toBe(serviceCard.className);
-      expect(icon.className).toBe(serviceIcon.className);
-      expect(icon.querySelector('svg').getAttribute('class')).toBe(serviceIcon.querySelector('svg').getAttribute('class'));
-      expect(label.className).toBe(serviceName.className);
+  it('shows the facts as light text on the photo, not as cards', () => {
+    for (const item of document.querySelectorAll('ul[aria-label="Why clients choose us"] li')) {
+      for (const card of ['bg-white', 'border', 'shadow-sm', 'rounded-xl']) {
+        expect(item.classList.contains(card), card).toBe(false);
+      }
+      const [icon, label] = item.querySelectorAll(':scope > svg, :scope > span');
+      expect(icon.tagName.toLowerCase()).toBe('svg');
+      expect(label.classList.contains('text-white')).toBe(true);
     }
   });
 });
