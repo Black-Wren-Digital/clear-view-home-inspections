@@ -28,9 +28,9 @@ The site is static. Any static host can serve the `dist/` folder.
 
 - **Netlify:** Build command `npm run build`. Publish directory `dist`.
 - **GitHub Pages (current preview):** `.github/workflows/deploy.yml` runs on each push to `main` (or by hand from the **Actions** tab). It installs with Node from `.nvmrc`, runs the tests, builds, and deploys `dist/`. If a test fails, nothing is deployed. The workflow follows the Vite guide: https://vite.dev/guide/static-deploy#github-pages.
-  - Preview URL: https://joncernero.github.io/clearviewhomeinspections/
+  - Preview URL: https://black-wren-digital.github.io/clear-view-home-inspections/
   - One-time setup: in **Settings → Pages → Build and deployment → Source**, select **GitHub Actions**.
-  - The Vite config uses `base: './'`, so the same build works on the `github.io/clearviewhomeinspections/` URL and later on cvhi.us.
+  - The Vite config uses `base: './'`, so the same build works on the `github.io/clear-view-home-inspections/` URL and later on cvhi.us.
   - The workflow sets `SITE_NOINDEX=true`, so the preview page has `<meta name="robots" content="noindex">` and search engines skip it (see `scripts/vite-plugin-noindex.js`). Builds without the variable, such as `npm run build` on your machine, have no such tag.
 
 ## Domain and DNS (at launch)
