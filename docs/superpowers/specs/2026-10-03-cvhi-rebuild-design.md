@@ -43,9 +43,13 @@ cvhi/
 ├── index.html          # the one page, with all 10 sections
 ├── src/
 │   ├── main.css        # Tailwind import, theme tokens, small base styles
-│   └── main.js         # mobile menu, video, contact form, footer year
-├── public/
-│   └── images/         # logo, hero photo, report sample, favicon
+│   ├── main.js         # entry point: starts each module, sets footer year
+│   ├── js/             # menu.js, video.js, contact-form.js
+│   └── assets/images/  # logo, hero photo, report sample, video thumbnail
+├── public/             # favicon, apple-touch-icon, og-image (fixed URLs)
+├── assets/source/      # original images from Wix and YouTube
+├── scripts/            # optimize-images.sh
+├── tests/              # Vitest tests
 ├── vite.config.js      # Vite with the Tailwind plugin, base: './'
 ├── package.json        # scripts: dev, build, preview
 ├── README.md           # run, build, deploy, and connect the form
@@ -60,11 +64,11 @@ cvhi/
   - `--font-sans` set to Inter Variable, then the system font stack.
 - **Font:** `@fontsource-variable/inter` from npm. The site serves the font itself, so the page sends no request to Google.
 - **Icons:** Inline SVG from the Lucide icon set, pasted into the HTML. The site has no icon dependency.
-- **Images:** Download the full-size originals from Wix. Convert each image to WebP at the sizes the layout uses. Keep a JPEG fallback for the Open Graph image only. Set `width` and `height` on each `<img>` to stop layout shift. Load images below the hero with `loading="lazy"`.
+- **Images:** Content images go in `src/assets/images/`, so Vite adds a content hash to each file name. The favicon and the Open Graph image go in `public/`, because they need fixed URLs. Download the full-size originals from Wix. Convert each image to WebP at the sizes the layout uses. Keep a JPEG fallback for the Open Graph image only. Set `width` and `height` on each `<img>` to stop layout shift. Load images below the hero with `loading="lazy"`.
 
 ## 4. Page layout
 
-All sections are in `index.html`, in this order. Each section that the nav links to has an `id` and a `scroll-margin-top` value, so the sticky header does not cover the section heading.
+All sections are in `index.html`, in this order. Each section that the nav links to has an `id`. The `<html>` element has `scroll-padding-top: 5rem` (Tailwind `scroll-pt-20`), so the sticky header (4rem high) does not cover the section heading after a jump.
 
 | #  | Section          | `id`        | Nav label  | Background             |
 | -- | ---------------- | ----------- | ---------- | ---------------------- |
@@ -158,6 +162,7 @@ Services · Reports · Reviews · FAQ · Contact · button "Call (317) 578-0890"
 
 ### Reviews
 
+- **H2:** Satisfied Clear View clients
 - **Quote (word for word):**
   > My fiance and I are in the process of buying our first home. After finding the perfect home, our realtor recommended [Clear View Home Inspections] for the inspection. Doug Wehr was our inspector and he was absolutely fantastic. He was incredibly thorough and made sure to explain every step of the process and every detail regarding any serious or potential issue in the home. We are so appreciative of his time and expertise during our experience. I would highly recommend Doug to any of my family and friends!
 - **Name:** Krystal Schulz
@@ -245,7 +250,7 @@ The form works on any static host. The `data-endpoint` attribute on the `<form>`
 ### FAQ
 
 - Native `<details>` and `<summary>` elements. No JavaScript.
-- A plus or minus icon shows the state, with CSS on `details[open]`.
+- A plus icon shows the state. When the item opens, CSS on `details[open]` turns the plus 45 degrees, so it shows as an ×.
 
 ### Other
 
