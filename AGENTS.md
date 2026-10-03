@@ -11,7 +11,7 @@ The website for Clear View Home Inspections, LLC, a home inspection business in 
 ## How it is built
 
 - Vite 8 and Tailwind CSS v4 (`@tailwindcss/vite`). Plain HTML in `index.html`. Three small JavaScript modules in `src/js/`, started by `src/main.js`. Vitest with jsdom for the tests.
-- Prettier (defaults, plus `prettier-plugin-tailwindcss` for class order) formats every file. ESLint (`eslint.config.js`) checks the JavaScript, and `html-validate` (`.htmlvalidate.mjs`) checks `index.html`. Each rule change in those configs carries its reason in a comment.
+- Prettier (`prettier.config.js`: tabs, single quotes, no semicolons, no trailing commas, and `prettier-plugin-tailwindcss` for class order) formats every file. Run `npm run format` instead of formatting by hand. ESLint (`eslint.config.js`) checks the JavaScript, and `html-validate` (`.htmlvalidate.mjs`) checks `index.html`. Each rule change in those configs carries its reason in a comment.
 - The site has no framework. React may come later, on the same Vite setup.
 - Commands are the `package.json` scripts. The README covers the deploy, the contact form setup, and the domain and DNS steps.
 
