@@ -4,7 +4,12 @@ The website for Clear View Home Inspections, LLC (https://www.cvhi.us). It is a 
 
 ## Requirements
 
-- Node.js 20.19 or later, or 22.12 or later.
+- Node.js 24 (the version in `.nvmrc`). mise, fnm, and nvm read this file:
+  - **mise:** set `idiomatic_version_file_enable_tools = ["node"]` in your mise config, then run `mise install`.
+  - **fnm:** run `fnm use` (or enable `--use-on-cd`).
+  - **nvm:** run `nvm use`.
+
+  Netlify also reads `.nvmrc` for the build. In GitHub Actions, use `actions/setup-node` with `node-version-file: .nvmrc`.
 
 ## Commands
 
@@ -21,7 +26,7 @@ The website for Clear View Home Inspections, LLC (https://www.cvhi.us). It is a 
 The site is static. Any static host can serve the `dist/` folder.
 
 - **Netlify:** Build command `npm run build`. Publish directory `dist`.
-- **GitHub Pages:** Use a GitHub Actions workflow that runs `npm ci` and `npm run build`, then uploads `dist/`. See the Vite guide: https://vite.dev/guide/static-deploy#github-pages. The Vite config uses `base: './'`, so the site works on a custom domain and on a `username.github.io/repo/` URL.
+- **GitHub Pages:** Use a GitHub Actions workflow that sets up Node from `.nvmrc`, runs `npm ci` and `npm run build`, then uploads `dist/`. See the Vite guide: https://vite.dev/guide/static-deploy#github-pages. The Vite config uses `base: './'`, so the site works on a custom domain and on a `username.github.io/repo/` URL.
 
 ## Contact form
 
