@@ -10,17 +10,22 @@ The website for Clear View Home Inspections, LLC (https://www.cvhi.us). It is a 
   - **nvm:** run `nvm use`.
 
   Netlify also reads `.nvmrc` for the build. In GitHub Actions, use `actions/setup-node` with `node-version-file: .nvmrc`.
-- `package.json` accepts Node `^24.15.0 || ^26.0.0` (the two LTS lines the project supports), and `.npmrc` sets `engine-strict=true`. `npm install` fails with `EBADENGINE` on any other version. To move to a new LTS line, change `.nvmrc`, and add the line to `engines` if it is not there.
+
+- `engines` in `package.json` lists the supported versions: `^24.15.0 || ^26.0.0` (the two LTS lines). On any other version, `npm install` shows an `EBADENGINE` warning. To move to a new LTS line, change `.nvmrc`, and add the line to `engines` if it is not there.
 
 ## Commands
 
-| Command           | What it does                                          |
-| ----------------- | ----------------------------------------------------- |
-| `npm install`     | Installs the dependencies.                            |
-| `npm run dev`     | Starts a local server with live reload.               |
-| `npm test`        | Runs the tests once.                                  |
-| `npm run build`   | Builds the site into `dist/`.                         |
-| `npm run preview` | Serves the built site from `dist/` on port 4173.      |
+| Command                | What it does                                          |
+| ---------------------- | ----------------------------------------------------- |
+| `npm install`          | Installs the dependencies.                            |
+| `npm run dev`          | Starts a local server with live reload.               |
+| `npm test`             | Runs the tests once.                                  |
+| `npm run build`        | Builds the site into `dist/`.                         |
+| `npm run preview`      | Serves the built site from `dist/` on port 4173.      |
+| `npm run lint`         | Checks the JavaScript with ESLint.                    |
+| `npm run lint:html`    | Validates `index.html` with html-validate.            |
+| `npm run format`       | Formats all files with Prettier.                      |
+| `npm run format:check` | Checks the formatting without changes (CI runs this). |
 
 ## Deploy
 
@@ -86,6 +91,9 @@ A hidden field named `_gotcha` stops simple spam bots. If it has a value, the fo
 - `public/`: files that need a fixed URL (favicon, Open Graph image).
 - `scripts/`: the image script, and the Vite plugin that adds the preview `noindex` tag.
 - `.github/workflows/deploy.yml`: tests, builds, and deploys the site to GitHub Pages.
+- `.github/workflows/ci.yml`: checks every pull request (lint, HTML validation, format, tests, build).
+- `.github/dependabot.yml`: weekly dependency update pull requests.
+- `eslint.config.js`, `prettier.config.js`, `.htmlvalidate.mjs`, `.editorconfig`: lint and format settings.
 - `tests/`: Vitest tests.
-- `AGENTS.md`: context and conventions for coding agents (`CLAUDE.md` loads it for Claude Code).
+- `AGENTS.md`: context and conventions for coding agents. Claude Code v2.1.277 and later reads it directly.
 - `TODO.md`: open follow-ups, including the launch steps.

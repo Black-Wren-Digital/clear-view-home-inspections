@@ -1,24 +1,25 @@
 /* Scan only the page and its scripts for classes, so class names quoted in Markdown files stay out of the CSS. */
-@import "tailwindcss" source(none);
-@import "@fontsource-variable/inter";
-@source "../index.html";
-@source "./js";
+@import 'tailwindcss' source(none);
+@import '@fontsource-variable/inter';
+@source '../index.html';
+@source './js';
 
 @theme {
-  --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif,
-    "Apple Color Emoji", "Segoe UI Emoji";
+	--font-sans:
+		'Inter Variable', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
+		'Segoe UI Emoji';
 
-  --color-brand-50: #eef0fb;
-  --color-brand-100: #dde1f7;
-  --color-brand-200: #c3caf1;
-  --color-brand-300: #9ea9e8;
-  --color-brand-400: #7181dc;
-  --color-brand-500: #4d5fcf;
-  --color-brand-600: #3445b5;
-  --color-brand-700: #243292;
-  --color-brand-800: #1f2a78;
-  --color-brand-900: #1b2463;
-  --color-brand-950: #141a45;
+	--color-brand-50: #eef0fb;
+	--color-brand-100: #dde1f7;
+	--color-brand-200: #c3caf1;
+	--color-brand-300: #9ea9e8;
+	--color-brand-400: #7181dc;
+	--color-brand-500: #4d5fcf;
+	--color-brand-600: #3445b5;
+	--color-brand-700: #243292;
+	--color-brand-800: #1f2a78;
+	--color-brand-900: #1b2463;
+	--color-brand-950: #141a45;
 }
 
 /*
@@ -26,14 +27,14 @@
  * Not in a layer, so shadow-* utilities cannot remove the white halo.
  */
 :focus-visible {
-  outline: 2px solid var(--color-brand-700);
-  outline-offset: 2px;
-  box-shadow: 0 0 0 5px #fff;
+	outline: 2px solid var(--color-brand-700);
+	outline-offset: 2px;
+	box-shadow: 0 0 0 5px #fff;
 }
 
 /* For an element that fills an overflow-hidden container: draw the ring inside it. */
 .focus-ring-inset:focus-visible {
-  outline-width: 3px;
-  outline-offset: -7px;
-  box-shadow: none;
+	outline-width: 3px;
+	outline-offset: -7px;
+	box-shadow: none;
 }

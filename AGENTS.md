@@ -11,6 +11,7 @@ The website for Clear View Home Inspections, LLC, a home inspection business in 
 ## How it is built
 
 - Vite 8 and Tailwind CSS v4 (`@tailwindcss/vite`). Plain HTML in `index.html`. Three small JavaScript modules in `src/js/`, started by `src/main.js`. Vitest with jsdom for the tests.
+- Prettier (`prettier.config.js`: tabs, single quotes, no semicolons, no trailing commas, and `prettier-plugin-tailwindcss` for class order) formats every file. Run `npm run format` instead of formatting by hand. ESLint (`eslint.config.js`) checks the JavaScript, and `html-validate` (`.htmlvalidate.mjs`) checks `index.html`. Each rule change in those configs carries its reason in a comment.
 - The site has no framework. React may come later, on the same Vite setup.
 - Commands are the `package.json` scripts. The README covers the deploy, the contact form setup, and the domain and DNS steps.
 
@@ -28,18 +29,22 @@ The website for Clear View Home Inspections, LLC, a home inspection business in 
 - **Header height is shared.** The header is `h-16` plus a 1 px border. The hero's `min-h-[calc(100svh-4rem-1px)]` and the `scroll-pt-20` on `<html>` depend on it. Change them together.
 - **Focus ring:** The `:focus-visible` rule in `src/main.css` sits outside the Tailwind layers on purpose, so `shadow-*` utilities cannot remove its white halo. An element that fills an `overflow-hidden` box uses `.focus-ring-inset`.
 - **Accessibility bar:** WCAG AA contrast (4.5:1 for text), a visible focus ring on every control, a label on every field, and tap targets of 44 px on phones.
-- **Node:** `.nvmrc` selects the version. `package.json` `engines` plus `engine-strict=true` in `.npmrc` make `npm install` fail on unsupported versions.
+- **Phone links:** A `tel:` link that shows the number has `whitespace-nowrap`, so the number stays on one line. A `tel:` link with other text (the services call card) has `whitespace-normal`. `html-validate` requires one of the two.
+- **Node:** `.nvmrc` selects the version. `engines` in `package.json` lists the supported versions. npm only warns on other versions, so check `node -v` when an install or build behaves oddly.
 
-## Deployment
+## CI and deployment
+
+`.github/workflows/ci.yml` runs on every pull request: lint, HTML validation, the format check, the tests, and the build. `.github/dependabot.yml` opens weekly update pull requests for npm packages and GitHub Actions.
 
 `.github/workflows/deploy.yml` runs on each push to `main`: install, `npm test`, build, deploy to GitHub Pages. The build sets `SITE_NOINDEX=true`, and `scripts/vite-plugin-noindex.js` then adds `<meta name="robots" content="noindex">`. This tag is for the preview only. Removing it is a launch step in `TODO.md`.
 
 ## Verify a change
 
-1. `npm test` passes.
-2. `npm run build` shows no warnings.
-3. For a visual change, look at the page at 375 px and at 1440 px wide.
-4. For a change to layout, color, or controls, run Lighthouse on `npm run preview`. Performance, accessibility, and best practices must each score 95 or more.
+1. `npm run format` formats the changed files.
+2. `npm run lint`, `npm run lint:html`, and `npm test` pass.
+3. `npm run build` shows no warnings.
+4. For a visual change, look at the page at 375 px and at 1440 px wide.
+5. For a change to layout, color, or controls, run Lighthouse on `npm run preview`. Performance, accessibility, and best practices must each score 95 or more.
 
 ## Git
 
