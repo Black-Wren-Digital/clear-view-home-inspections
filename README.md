@@ -29,6 +29,28 @@ The site is static. Any static host can serve the `dist/` folder.
 - **Netlify:** Build command `npm run build`. Publish directory `dist`.
 - **GitHub Pages:** Use a GitHub Actions workflow that sets up Node from `.nvmrc`, runs `npm ci` and `npm run build`, then uploads `dist/`. See the Vite guide: https://vite.dev/guide/static-deploy#github-pages. The Vite config uses `base: './'`, so the site works on a custom domain and on a `username.github.io/repo/` URL.
 
+## Domain and DNS (at launch)
+
+The domain cvhi.us is now registered through Wix. At launch, point it at the new host. Do not change the MX records, so that email to info@cvhi.us keeps working.
+
+### GitHub Pages
+
+1. In the repo settings, open **Pages** and set the source to **GitHub Actions** (the site has a build step, so it cannot deploy from a branch).
+2. Verify cvhi.us for the GitHub account first. This prevents a domain takeover.
+3. Add a file `public/CNAME` that contains `www.cvhi.us`. Vite copies it into `dist/`.
+4. At the registrar, add apex `A` records `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, and `185.199.111.153`, plus the `AAAA` records from the GitHub docs. Add a `www` `CNAME` record that points to `<account>.github.io`.
+5. Turn on **Enforce HTTPS**. It can take up to 24 hours to become available.
+
+Docs: https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site
+
+### Netlify
+
+Add the domain in the Netlify dashboard (**Domain management**) and follow its DNS instructions. Keep the MX records as they are.
+
+### After launch
+
+When the site has a sitemap (part of the later SEO work), submit `/sitemap.xml` in Google Search Console and Bing Webmaster Tools.
+
 ## Contact form
 
 The form in `index.html` (`<form id="contact-form">`) works on any host. Its `data-endpoint` attribute controls how it sends messages.
