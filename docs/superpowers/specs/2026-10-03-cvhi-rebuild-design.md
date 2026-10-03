@@ -1,7 +1,7 @@
 # Clear View Home Inspections: Site Rebuild Design
 
 - **Date:** 2026-10-03
-- **Status:** Approved design. Waiting for spec review.
+- **Status:** Approved design. Owner answers added on 2026-10-03.
 - **Current site:** https://www.cvhi.us (Wix, one page)
 
 ## 1. Goal
@@ -87,9 +87,9 @@ All sections are in `index.html`, in this order. Each section that the nav links
 2. **Hero:** The house photo covers the full width. A gradient goes from dark brand blue on the left to almost clear on the right. The text block is on the left. It has an eyebrow line, an `<h1>`, one short paragraph, and 2 buttons: "Schedule an inspection" (to `#contact`) and "Our services" (to `#services`).
 3. **Trust bar:** 4 short facts in one row on desktop. The facts show as a 2 × 2 grid on phones.
 4. **Why Clear View:** Text on the left. The video on the right. On phones, the video goes below the text.
-5. **Services:** A grid of cards. Each card has an icon and a service name. The eighth card is a brand-blue "Not sure what you need?" card with a call link. The grid has 4 columns on desktop, 2 on tablet, and 1 on phone.
+5. **Services:** A grid of cards. Each card has an icon and a service name. The last card is a brand-blue "Not sure what you need?" card with a call link. The grid has 12 cards. It has 4 columns on desktop, 2 on tablet, and 1 on phone.
 6. **Your report:** The sample report image on the left. Text on the right.
-7. **Reviews:** One centered quote card.
+7. **Reviews:** One centered quote card. Under the card, 2 outline buttons link to the reviews on Google and on Yelp. Both links open in a new tab.
 8. **FAQ:** 3 `<details>` elements. The first one is open when the page loads.
 9. **Contact:** Contact details on the left. The form, in a white card, on the right.
 10. **Footer:** The business name, address, phone, and email. Links to Facebook and to Google Maps. The copyright line with the current year.
@@ -118,7 +118,7 @@ Services · Reports · Reviews · FAQ · Contact · button "Call (317) 578-0890"
 
 ### Trust bar
 
-- 25 years in Central Indiana
+- Serving Central Indiana since 1999
 - Licensed home inspectors
 - Report within 24 hours
 - Based in Fishers, Indiana
@@ -138,13 +138,17 @@ Services · Reports · Reviews · FAQ · Contact · button "Call (317) 578-0890"
 - **H2:** What we inspect and test
 - **Cards:**
   1. Full Home Inspections
-  2. Termite Certification
-  3. Radon Testing
-  4. Mold Testing
-  5. Air & Water Sampling
-  6. Winterization & De-Winterization
-  7. Well & Septic Certifications
-  8. Not sure what you need? · Call us →
+  2. New Construction Inspections
+  3. Pre-Drywall Inspections
+  4. Foundation Inspections
+  5. Commercial Inspections
+  6. Termite Certification
+  7. Radon Testing
+  8. Mold Testing
+  9. Air & Water Sampling
+  10. Winterization & De-Winterization
+  11. Well & Septic Certifications
+  12. Not sure what you need? · Call us →
 
 ### Your report
 
@@ -158,6 +162,10 @@ Services · Reports · Reviews · FAQ · Contact · button "Call (317) 578-0890"
   > My fiance and I are in the process of buying our first home. After finding the perfect home, our realtor recommended [Clear View Home Inspections] for the inspection. Doug Wehr was our inspector and he was absolutely fantastic. He was incredibly thorough and made sure to explain every step of the process and every detail regarding any serious or potential issue in the home. We are so appreciative of his time and expertise during our experience. I would highly recommend Doug to any of my family and friends!
 - **Name:** Krystal Schulz
 - **Label:** First-time home buyer
+- **Links:**
+  - "Read our Google reviews": `https://share.google/r1sEf6h0a8sqJCZn8`
+  - "Read our Yelp reviews": `https://www.yelp.com/biz/clear-view-home-inspections-fishers`
+- **More quotes:** The section can show more quotes later. Each quote must be the exact text of a real review, with the reviewer's name as the review shows it.
 
 ### FAQ
 
@@ -268,13 +276,17 @@ The work is complete when all of these checks pass:
 7. With a test endpoint, the form shows the success message on an OK response and the error message on a failed response.
 8. A Lighthouse audit of the built site gives 95 or more for performance, accessibility, and best practices.
 
-## 9. Questions for the owner
+## 9. Owner answers
 
-The owner must answer these before the site goes live. They do not block the build.
+The owner answered these questions on 2026-10-03. The content in section 5 includes the answers.
 
-1. **Years in business:** The current meta description says "25 years". Is this number correct, and what year did the business start?
-2. **Services list:** The current meta description names New Construction, Pre-drywall, Foundation, and Commercial inspections. The services section does not list them. Do we add them as service cards?
-3. **Address:** The site shows 11327 Reflection Point Drive. The sample report shows 10734 Brixton Lane. Which address is current?
-4. **License:** Can we say "Licensed home inspectors" in the trust bar? Do they want to show a license number or an ASHI membership? ASHI is the American Society of Home Inspectors.
-5. **Reviews:** Do they have more reviews, for example from Google, that we can add?
-6. **Text:** Do they approve the polished text in section 5?
+1. **Years in business:** The business started on January 19, 1999 (source: the BBB profile). The site says "since 1999", so the text stays correct each year. The current site says "25 years", which is out of date.
+2. **Services list:** Add New Construction, Pre-Drywall, Foundation, and Commercial inspections as service cards.
+3. **Address:** 11327 Reflection Point Drive, Fishers, IN 46037 is current.
+4. **License:** Show "Licensed home inspectors". Do not show a license number.
+5. **Reviews:** Link to the Google reviews and the Yelp reviews. The Yelp page shows the business as "Closed". The owner can correct this through Yelp for Business. The site links to Yelp anyway.
+6. **Text:** The owner approves the polished text in section 5.
+
+### Open item
+
+- **More review quotes:** The Google and Yelp pages do not give the review text to automated tools. To show more quotes, someone must copy the exact text of each review into section 5. This does not block the build.
