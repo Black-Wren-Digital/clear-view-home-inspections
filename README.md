@@ -10,17 +10,18 @@ The website for Clear View Home Inspections, LLC (https://www.cvhi.us). It is a 
   - **nvm:** run `nvm use`.
 
   Netlify also reads `.nvmrc` for the build. In GitHub Actions, use `actions/setup-node` with `node-version-file: .nvmrc`.
+
 - `package.json` accepts Node `^24.15.0 || ^26.0.0` (the two LTS lines the project supports), and `.npmrc` sets `engine-strict=true`. `npm install` fails with `EBADENGINE` on any other version. To move to a new LTS line, change `.nvmrc`, and add the line to `engines` if it is not there.
 
 ## Commands
 
-| Command           | What it does                                          |
-| ----------------- | ----------------------------------------------------- |
-| `npm install`     | Installs the dependencies.                            |
-| `npm run dev`     | Starts a local server with live reload.               |
-| `npm test`        | Runs the tests once.                                  |
-| `npm run build`   | Builds the site into `dist/`.                         |
-| `npm run preview` | Serves the built site from `dist/` on port 4173.      |
+| Command           | What it does                                     |
+| ----------------- | ------------------------------------------------ |
+| `npm install`     | Installs the dependencies.                       |
+| `npm run dev`     | Starts a local server with live reload.          |
+| `npm test`        | Runs the tests once.                             |
+| `npm run build`   | Builds the site into `dist/`.                    |
+| `npm run preview` | Serves the built site from `dist/` on port 4173. |
 
 ## Deploy
 

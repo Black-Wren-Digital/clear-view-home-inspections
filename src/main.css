@@ -5,8 +5,9 @@
 @source "./js";
 
 @theme {
-  --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif,
-    "Apple Color Emoji", "Segoe UI Emoji";
+  --font-sans:
+    "Inter Variable", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji";
 
   --color-brand-50: #eef0fb;
   --color-brand-100: #dde1f7;
