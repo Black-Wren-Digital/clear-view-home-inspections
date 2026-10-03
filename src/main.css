@@ -1,8 +1,8 @@
-@import "tailwindcss";
+/* Scan only the page and its scripts for classes, so class names quoted in Markdown files stay out of the CSS. */
+@import "tailwindcss" source(none);
 @import "@fontsource-variable/inter";
-
-/* The plan and spec in docs/ quote many class names; keep them out of the build. */
-@source not "../docs";
+@source "../index.html";
+@source "./js";
 
 @theme {
   --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif,

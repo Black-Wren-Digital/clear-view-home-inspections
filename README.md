@@ -87,4 +87,5 @@ A hidden field named `_gotcha` stops simple spam bots. If it has a value, the fo
 - `scripts/`: the image script, and the Vite plugin that adds the preview `noindex` tag.
 - `.github/workflows/deploy.yml`: tests, builds, and deploys the site to GitHub Pages.
 - `tests/`: Vitest tests.
-- `docs/superpowers/`: the design spec and the implementation plan.
+- `AGENTS.md`: context and conventions for coding agents (`CLAUDE.md` loads it for Claude Code).
+- `TODO.md`: open follow-ups, including the launch steps.
