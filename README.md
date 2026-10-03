@@ -27,7 +27,11 @@ The website for Clear View Home Inspections, LLC (https://www.cvhi.us). It is a 
 The site is static. Any static host can serve the `dist/` folder.
 
 - **Netlify:** Build command `npm run build`. Publish directory `dist`.
-- **GitHub Pages:** Use a GitHub Actions workflow that sets up Node from `.nvmrc`, runs `npm ci` and `npm run build`, then uploads `dist/`. See the Vite guide: https://vite.dev/guide/static-deploy#github-pages. The Vite config uses `base: './'`, so the site works on a custom domain and on a `username.github.io/repo/` URL.
+- **GitHub Pages (current preview):** `.github/workflows/deploy.yml` runs on each push to `main` (or by hand from the **Actions** tab). It installs with Node from `.nvmrc`, runs the tests, builds, and deploys `dist/`. If a test fails, nothing is deployed. The workflow follows the Vite guide: https://vite.dev/guide/static-deploy#github-pages.
+  - Preview URL: https://joncernero.github.io/clearviewhomeinspections/
+  - One-time setup: in **Settings → Pages → Build and deployment → Source**, select **GitHub Actions**.
+  - The Vite config uses `base: './'`, so the same build works on the `github.io/clearviewhomeinspections/` URL and later on cvhi.us.
+  - The workflow sets `SITE_NOINDEX=true`, so the preview page has `<meta name="robots" content="noindex">` and search engines skip it (see `scripts/vite-plugin-noindex.js`). Builds without the variable, such as `npm run build` on your machine, have no such tag.
 
 ## Domain and DNS (at launch)
 
@@ -35,7 +39,7 @@ The domain cvhi.us is now registered through Wix. At launch, point it at the new
 
 ### GitHub Pages
 
-1. In the repo settings, open **Pages** and set the source to **GitHub Actions** (the site has a build step, so it cannot deploy from a branch).
+1. In `.github/workflows/deploy.yml`, remove the `SITE_NOINDEX` line from the **Build** step, so search engines can index the live site.
 2. Verify cvhi.us for the GitHub account first. This prevents a domain takeover.
 3. Add a file `public/CNAME` that contains `www.cvhi.us`. Vite copies it into `dist/`.
 4. At the registrar, add apex `A` records `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, and `185.199.111.153`, plus the `AAAA` records from the GitHub docs. Add a `www` `CNAME` record that points to `<account>.github.io`.
@@ -80,5 +84,7 @@ A hidden field named `_gotcha` stops simple spam bots. If it has a value, the fo
 - `src/main.js`: the entry point. It starts the modules in `src/js/`.
 - `src/assets/images/`: content images. Run `scripts/optimize-images.sh` to make them again from `assets/source/`.
 - `public/`: files that need a fixed URL (favicon, Open Graph image).
+- `scripts/`: the image script, and the Vite plugin that adds the preview `noindex` tag.
+- `.github/workflows/deploy.yml`: tests, builds, and deploys the site to GitHub Pages.
 - `tests/`: Vitest tests.
 - `docs/superpowers/`: the design spec and the implementation plan.
