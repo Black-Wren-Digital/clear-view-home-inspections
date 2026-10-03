@@ -30,7 +30,7 @@ The website for Clear View Home Inspections, LLC, a home inspection business in 
 - **Focus ring:** The `:focus-visible` rule in `src/main.css` sits outside the Tailwind layers on purpose, so `shadow-*` utilities cannot remove its white halo. An element that fills an `overflow-hidden` box uses `.focus-ring-inset`.
 - **Accessibility bar:** WCAG AA contrast (4.5:1 for text), a visible focus ring on every control, a label on every field, and tap targets of 44 px on phones.
 - **Phone links:** A `tel:` link that shows the number has `whitespace-nowrap`, so the number stays on one line. A `tel:` link with other text (the services call card) has `whitespace-normal`. `html-validate` requires one of the two.
-- **Node:** `.nvmrc` selects the version. `package.json` `engines` plus `engine-strict=true` in `.npmrc` make `npm install` fail on unsupported versions. Dependabot runs npm on Node 24, so keep Node 24 in `engines` while Dependabot uses it, or its npm updates fail with `EBADENGINE`.
+- **Node:** `.nvmrc` selects the version. `engines` in `package.json` lists the supported versions. npm only warns on other versions, so check `node -v` when an install or build behaves oddly.
 
 ## CI and deployment
 
