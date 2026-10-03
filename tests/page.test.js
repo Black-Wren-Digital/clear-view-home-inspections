@@ -111,6 +111,14 @@ describe('trust bar', () => {
       'Based in Fishers, Indiana',
     ]);
   });
+
+  it('stacks the facts in one column on phones', () => {
+    const list = document.querySelector('[aria-label="Why clients choose us"] ul').classList;
+    expect(list.contains('grid-cols-1')).toBe(true);
+    expect(list.contains('grid-cols-2')).toBe(false);
+    expect(list.contains('sm:grid-cols-2')).toBe(true);
+    expect(list.contains('lg:grid-cols-4')).toBe(true);
+  });
 });
 
 describe('why clear view', () => {
